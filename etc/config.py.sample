@@ -2,6 +2,7 @@
 
 PORT = 8865
 
+MAIN_PAGE_REDIRECT = "https://github.com/cedricporter/url-shorten"
 SITE_URL = "http://163.gs/"
 SHORT_ID_LENGTH = 5
 

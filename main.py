@@ -43,6 +43,11 @@ c.connect()
 
 
 class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.redirect(config.MAIN_PAGE_REDIRECT)
+
+                
+class ExpandUrlHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     @tornado.gen.engine
     def get(self, short_id):
@@ -87,8 +92,9 @@ class ShortenUrlHandler(tornado.web.RequestHandler):
 
                     
 application = tornado.web.Application([
+    (r"/", MainHandler),
     (r"/short/?", ShortenUrlHandler),
-    (r"/([a-zA-Z0-9]{%s})/?" % config.SHORT_ID_LENGTH, MainHandler),
+    (r"/([a-zA-Z0-9]{%s})/?" % config.SHORT_ID_LENGTH, ExpandUrlHandler),
 ])
 
 if __name__ == "__main__":

@@ -1,0 +1,2 @@
+tornado==3.2.1
+tornado-redis==2.4.17
