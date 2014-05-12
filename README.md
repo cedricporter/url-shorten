@@ -13,6 +13,15 @@ curl -d "url=http://EverET.org" http://163.gs/short/
 ## Install
 Copy `etc/config.py.sample` to `etc/config.py` and modify it if necessary.
 
+## Dependency
+Run `pip install -r requirements.txt` to install dependency. We advise you to install them in virtualenv.
+
+```
+$ virtualenv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
+```
+
 ## Simple 
 And you can run execute `./main.py` to run it.
 
