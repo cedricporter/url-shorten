@@ -1,4 +1,4 @@
-# Shorturl 
+# 163.gs url shorten service
 
 This is the source code of [http://163.gs](http://163.gs). 
 
