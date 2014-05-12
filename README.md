@@ -1,6 +1,8 @@
 # Shorturl 
 
-This is the source code of [http://163.gs](http://163.gs).
+This is the source code of [http://163.gs](http://163.gs). 
+
+163.gs is written by Python with Tornado. 
 
 ## Generate shorten url
 
