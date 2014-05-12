@@ -4,6 +4,7 @@
 
 import urlparse
 
+from tornado.options import define, options
 from tornado.web import HTTPError
 import tornado.gen
 import tornado.httpserver
@@ -74,8 +75,9 @@ application = tornado.web.Application([
 ], debug=config.DEBUG)
 
 if __name__ == "__main__":
-    application.listen(config.PORT)
-    tornado.ioloop.IOLoop.instance().start()
+    tornado.options.parse_command_line()
+    http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
+    http_server.listen(options.port)
 
     
 
