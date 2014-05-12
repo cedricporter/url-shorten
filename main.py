@@ -24,9 +24,10 @@ c.connect()
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.redirect(config.MAIN_PAGE_REDIRECT)
+        self.render("templates/short.html")
+        # self.redirect(config.MAIN_PAGE_REDIRECT)
 
-                
+
 class ExpandUrlHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     @tornado.gen.engine
@@ -54,13 +55,13 @@ class ShortenUrlHandler(tornado.web.RequestHandler):
             short_id = yield tornado.gen.Task(c.get, key)
             if short_id:
                 break
-            
+
             short_id = util.gen_short_id()
             key = util.gen_cache_key(const.CACHE_KEY_PREFIX.SHORT_ID, short_id)
             ret = yield tornado.gen.Task(c.get, key)
             if ret:
                 continue
-            
+
             yield tornado.gen.Task(c.set, key, url)
             key = util.gen_cache_key(const.CACHE_KEY_PREFIX.REVERSE_URL, url)
             yield tornado.gen.Task(c.set, key, short_id)
@@ -69,7 +70,7 @@ class ShortenUrlHandler(tornado.web.RequestHandler):
         self.write(urlparse.urljoin(config.SITE_URL, short_id))
         self.finish()
 
-                    
+
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/short/?", ShortenUrlHandler),
@@ -82,6 +83,3 @@ if __name__ == "__main__":
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
-
-    
-
