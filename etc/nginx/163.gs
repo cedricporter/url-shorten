@@ -6,6 +6,9 @@ upstream 163gs_upstream {
 server {
     server_name 163.gs;
 
+    access_log  /var/log/nginx/163.gs.access.log;
+    error_log   /var/log/nginx/163.gs.error.log;
+
     location / {
         proxy_pass http://163gs_upstream;
         proxy_pass_header Server;
