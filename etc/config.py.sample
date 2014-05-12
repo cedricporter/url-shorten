@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+PORT = 8865
 DEBUG = False
 
 MAIN_PAGE_REDIRECT = "https://github.com/cedricporter/url-shorten"

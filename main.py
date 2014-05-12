@@ -16,6 +16,7 @@ import tornadoredis
 from etc import config, const
 from base import util
 
+define("port", default=config.PORT, help="run on the given port", type=int)
 
 c = tornadoredis.Client()
 c.connect()
@@ -75,10 +76,12 @@ application = tornado.web.Application([
     (r"/([a-zA-Z0-9]{%s})/?" % config.SHORT_ID_LENGTH, ExpandUrlHandler),
 ], debug=config.DEBUG)
 
+
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
 
     
 
