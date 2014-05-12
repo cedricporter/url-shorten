@@ -4,6 +4,7 @@
 
 import urlparse
 
+import tornado.options
 from tornado.options import define, options
 from tornado.web import HTTPError
 import tornado.gen
