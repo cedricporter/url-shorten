@@ -4,7 +4,7 @@
 # Assuming you placed a virtualenv here
 
 SUPERVISORD=`which supervisord`
-PIDFILE=/tmp/supervisord-5txl.pid
+PIDFILE=/tmp/supervisord-163gs.pid
 OPTS="-c $VIRTUAL_ENV/../etc/supervisord.conf"
 . /lib/lsb/init-functions
 export PATH="${PATH:+$PATH:}/usr/local/bin:/usr/sbin:/sbin"
