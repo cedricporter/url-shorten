@@ -11,10 +11,11 @@ curl -d "url=http://EverET.org" http://163.gs/short/
 ```
 
 ## Install
+Copy `etc/config.py.sample` to `etc/config.py` and modify it if necessary.
 
 ## Simple 
-Just copy `etc/config.py.sample` to `etc/config.py` and modify it if necessary. And you can run just execute `./main.py`.
+And you can run execute `./main.py` to run it.
 
 ## By supervisor
-Copy `etc/supervisord.conf.sample` as supervisord config file, and run with supervisord.
+Or copy `etc/supervisord.conf.sample` as supervisord config file, and run with supervisord.
 
