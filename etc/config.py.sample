@@ -1,0 +1,8 @@
+# -*- coding: utf-8 -*-
+
+PORT = 8865
+
+SITE_URL = "http://163.gs/"
+SHORT_ID_LENGTH = 5
+
+
