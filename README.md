@@ -22,7 +22,7 @@ $ source .env/bin/activate
 $ pip install -r requirements.txt
 ```
 
-## Simple 
+## Simple deploy
 And you can run execute `./main.py` to run it.
 
 ## By supervisor
