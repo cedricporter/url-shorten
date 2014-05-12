@@ -93,7 +93,12 @@
                      type: "POST",
                      data: {url: $("input[name=url]").val()},
                      success: function (ret) {
-                         $("span[name=ret_msg]").text(ret);
+                         if (ret.substr(0, 5) == "http:") {
+                             $("span[name=ret_msg]").html("<a target='_blank' href='" + ret + "'>" + ret + "</a>");
+                         }
+                         else {
+                             $("span[name=ret_msg]").text(ret);
+                         }
                      }
                  });
              });
