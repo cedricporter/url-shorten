@@ -63,7 +63,7 @@
 
     <body>
         <div class="container">
-            <form class="form-signin" role="form">
+            <form class="form-signin" role="form" id="applyForm">
                 <h2 class="form-signin-heading">Url Shorten</h2>
                 <input type="text" name="url" class="form-control" placeholder="paste url here" required autofocus>
                 <label class="checkbox"> </label>
@@ -87,7 +87,7 @@
 
         <script>
          $(function () {
-             $(".generateBtn").click(function () {
+             var generate = function () {
                  $.ajax({
                      url: "/short/",
                      type: "POST",
@@ -101,7 +101,14 @@
                          }
                      }
                  });
+             };
+             
+             $(".generateBtn").click(generate);
+             $("#applyForm").submit(function (ev) {
+                 generate();
+                 ev.preventDefault();
              });
+
          });
         </script>
     </body>

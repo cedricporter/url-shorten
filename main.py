@@ -18,8 +18,8 @@ from base import util
 
 define("port", default=config.PORT, help="run on the given port", type=int)
 
-c = tornadoredis.Client()
-c.connect()
+CONNECTION_POOL = tornadoredis.ConnectionPool(max_connections=10,
+                                              wait_for_available=True)
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -32,6 +32,7 @@ class ExpandUrlHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     @tornado.gen.engine
     def get(self, short_id):
+        c = tornadoredis.Client(connection_pool=CONNECTION_POOL)
         key = util.gen_cache_key(const.CACHE_KEY_PREFIX.SHORT_ID, short_id)
         url = yield tornado.gen.Task(c.get, key)
         if url:
@@ -44,6 +45,7 @@ class ShortenUrlHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     @tornado.gen.engine
     def post(self):
+        c = tornadoredis.Client(connection_pool=CONNECTION_POOL)
         url = self.get_argument("url")
         if not util.validate_url(url):
             self.write("not a valid url")
