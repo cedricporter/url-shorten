@@ -51,13 +51,11 @@ class ShortenUrlHandler(tornado.web.RequestHandler):
             self.write("not a valid url")
             self.finish()
             return
+        
+        key = util.gen_cache_key(const.CACHE_KEY_PREFIX.REVERSE_URL, url)
+        short_id = redis_short_id = yield tornado.gen.Task(c.get, key)
 
-        while True:
-            key = util.gen_cache_key(const.CACHE_KEY_PREFIX.REVERSE_URL, url)
-            short_id = yield tornado.gen.Task(c.get, key)
-            if short_id:
-                break
-
+        while not redis_short_id:
             short_id = util.gen_short_id()
             key = util.gen_cache_key(const.CACHE_KEY_PREFIX.SHORT_ID, short_id)
             ret = yield tornado.gen.Task(c.get, key)
