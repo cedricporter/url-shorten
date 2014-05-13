@@ -36,7 +36,7 @@ class ExpandUrlHandler(tornado.web.RequestHandler):
         key = util.gen_cache_key(const.CACHE_KEY_PREFIX.SHORT_ID, short_id)
         url = yield tornado.gen.Task(c.get, key)
         if url:
-            self.redirect(url)
+            self.redirect(url, permanent=True)
         else:
             raise HTTPError(404)
 
@@ -83,3 +83,4 @@ if __name__ == "__main__":
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
+
