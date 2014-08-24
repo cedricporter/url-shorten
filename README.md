@@ -30,5 +30,5 @@ $ pip install -r requirements.txt
 And you can run execute `./main.py` to run it.
 
 ## By supervisor
-Or copy `etc/supervisord.conf.sample` as supervisord config file, and run with supervisord.
+Copy `etc/supervisor/163.gs.conf` to your supervisord config folder, and modify it accordingly. And run it with supervisord.
 
