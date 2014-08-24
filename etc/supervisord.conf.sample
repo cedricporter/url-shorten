@@ -1,42 +1,10 @@
-; Sample supervisor config file.
-;
-; For more information on the config file, please see:
-; http://supervisord.org/configuration.html
-;
-; Note: shell expansion ("~" or "$HOME") is not supported.  Environment
-; variables can be expanded using this syntax: "%(ENV_HOME)s".
-
-[unix_http_server]
-file=/tmp/supervisor-163gs.sock   ; (the path to the socket file)
-
-[inet_http_server]         ; inet (TCP) server disabled by default
-port=127.0.0.1:9002        ; (ip_address:port specifier, *:port for all iface)
-;username=user              ; (default is no username (open server))
-;password=123               ; (default is no password (open server))
-
-[supervisord]
-logfile=/tmp/supervisord-163gs.log ; (main log file;default $CWD/supervisord.log)
-logfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)
-logfile_backups=10           ; (num of main logfile rotation backups;default 10)
-loglevel=info                ; (log level;default info; others: debug,warn,trace)
-pidfile=/tmp/supervisord-163gs.pid
-nodaemon=false               ; (start in foreground if true;default false)
-minfds=1024                  ; (min. avail startup file descriptors;default 1024)
-minprocs=200                 ; (min. avail process descriptors;default 200)
-
-[rpcinterface:supervisor]
-supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
-
-[supervisorctl]
-serverurl=unix:///tmp/supervisor-163gs.sock ; use a unix:// URL  for a unix socket
-
 [program:163gs]
-numprocs=2
-numprocs_start=8850
-process_name=163gs-%(process_num)s
-directory=%(here)s/..
-command=%(here)s/../main.py --port=%(process_num)s
-autorestart=true
-startretries=3
-redirect_stderr=true
-stdout_logfile=%(here)s/../log/supervisor-%(process_num)s.log
+numprocs = 2
+numprocs_start = 8850
+process_name = 163gs-%(process_num)s
+directory = /home/projects/163.gs/
+command = /home/projects/163.gs/main.py --port=%(process_num)s
+autorestart = true
+redirect_stderr = true
+stdout_logfile = /var/log/supervisor/163gs.log
+stderr_logfile = /var/log/supervisor/163gs-error.log
