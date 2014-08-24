@@ -2,3 +2,7 @@ etc/config.py
 .env/
 start.sh
 log.log
+webscan_360_cn.html
+google7a32e07f62c143af.html
+reload.sh
+log/
