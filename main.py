@@ -13,19 +13,18 @@ import tornado.options
 import tornado.web
 import tornadoredis
 
+import model
+from model.connection import CONNECTION_POOL
+
 from etc import config, const
 from base import util
 
 define("port", default=config.PORT, help="run on the given port", type=int)
 
-CONNECTION_POOL = tornadoredis.ConnectionPool(max_connections=10,
-                                              wait_for_available=True)
-
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("templates/short.html")
-        # self.redirect(config.MAIN_PAGE_REDIRECT)
 
 
 class ExpandUrlHandler(tornado.web.RequestHandler):
@@ -51,7 +50,7 @@ class ShortenUrlHandler(tornado.web.RequestHandler):
             self.write("not a valid url")
             self.finish()
             return
-        
+
         key = util.gen_cache_key(const.CACHE_KEY_PREFIX.REVERSE_URL, url)
         short_id = redis_short_id = yield tornado.gen.Task(c.get, key)
 
@@ -83,4 +82,3 @@ if __name__ == "__main__":
     http_server = tornado.httpserver.HTTPServer(application, xheaders=True)
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
-

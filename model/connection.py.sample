@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# By Hua Liang[Stupid ET]
+
+import tornadoredis
+
+
+MAX_CONNECTIONS = 10
+UNIX_SOCKET_PATH = "/var/run/redis/redis-163gs.sock"
+
+CONNECTION_POOL = tornadoredis.ConnectionPool(max_connections=MAX_CONNECTIONS,
+                                              unix_socket_path=UNIX_SOCKET_PATH,
+                                              wait_for_available=True)
