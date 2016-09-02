@@ -1,0 +1,6 @@
+{
+  "name": "Url-shorten",
+  "tagline": "The 163.gs url shorten service written by python.",
+  "body": "# 163.gs url shorten service\r\n\r\nThis is the source code of [http://163.gs](http://163.gs). \r\n\r\n163.gs is written by Python with Tornado. \r\n\r\n## Generate shorten url interface\r\n\r\n``` \r\ncurl -d \"url=http://EverET.org\" http://163.gs/short/\r\n```\r\n\r\nReturn short url if success. You can check whether the response is started with `http:` to determine if it is successful.\r\n\r\nIf fail, it returns the error message.\r\n\r\n## Install\r\nCopy `etc/config.py.sample` to `etc/config.py` and modify it if necessary.\r\n\r\n## Dependency\r\nRun `pip install -r requirements.txt` to install dependency. We advise you to install them in virtualenv.\r\n\r\n```\r\n$ virtualenv .env\r\n$ source .env/bin/activate\r\n$ pip install -r requirements.txt\r\n```\r\n\r\n## Simple deploy\r\nAnd you can run execute `./main.py` to run it.\r\n\r\n## By supervisor\r\nCopy `etc/supervisor/163.gs.conf` to your supervisord config folder, and modify it accordingly. Then you can run it with supervisord.\r\n\r\nIt will open two processes that listen on 8850, 8851, you can use `etc/nginx/163.gs` as your nginx config to proxy it.\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}

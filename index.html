@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Url-shorten by cedricporter</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Url-shorten</h1>
+        <h2>The 163.gs url shorten service written by python.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/cedricporter/url-shorten/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/cedricporter/url-shorten/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/cedricporter/url-shorten" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="163gs-url-shorten-service" class="anchor" href="#163gs-url-shorten-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>163.gs url shorten service</h1>
+
+<p>This is the source code of <a href="http://163.gs">http://163.gs</a>. </p>
+
+<p>163.gs is written by Python with Tornado. </p>
+
+<h2>
+<a id="generate-shorten-url-interface" class="anchor" href="#generate-shorten-url-interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generate shorten url interface</h2>
+
+<pre><code>curl -d "url=http://EverET.org" http://163.gs/short/
+</code></pre>
+
+<p>Return short url if success. You can check whether the response is started with <code>http:</code> to determine if it is successful.</p>
+
+<p>If fail, it returns the error message.</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p>Copy <code>etc/config.py.sample</code> to <code>etc/config.py</code> and modify it if necessary.</p>
+
+<h2>
+<a id="dependency" class="anchor" href="#dependency" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependency</h2>
+
+<p>Run <code>pip install -r requirements.txt</code> to install dependency. We advise you to install them in virtualenv.</p>
+
+<pre><code>$ virtualenv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
+</code></pre>
+
+<h2>
+<a id="simple-deploy" class="anchor" href="#simple-deploy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Simple deploy</h2>
+
+<p>And you can run execute <code>./main.py</code> to run it.</p>
+
+<h2>
+<a id="by-supervisor" class="anchor" href="#by-supervisor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>By supervisor</h2>
+
+<p>Copy <code>etc/supervisor/163.gs.conf</code> to your supervisord config folder, and modify it accordingly. Then you can run it with supervisord.</p>
+
+<p>It will open two processes that listen on 8850, 8851, you can use <code>etc/nginx/163.gs</code> as your nginx config to proxy it.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
